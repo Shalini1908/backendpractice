@@ -27,6 +27,39 @@ criticalRouter.post("/createcriticalpost",async(req,res)=>{
 });
 
 
+criticalRouter.patch("/update/:id",async(req,res)=>{
+    const id = req.params.id
+
+   try{
+    
+    await CriticalModel.findByIdAndUpdate({"_id":id})
+    res.send({"msg":"Updated Successfully"})
+  
+
+   }catch(err){
+    console.log(err)
+    res.send({"msg":"Something went wrong"})
+   }
+    })
+    
+    
+    criticalRouter.delete("/delete/:id",async(req,res)=>{
+        const id = req.params.id
+ 
+       try{
+
+        await CriticalModel.findByIdAndDelete({"_id":id})
+        res.send({"msg":"Deleted Successfully"})
+      
+    
+       }catch(err){
+        console.log(err)
+        res.send({"msg":"Something went wrong"})
+       }
+        })
+    
+
+
  module.exports={
         criticalRouter
  }
