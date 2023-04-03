@@ -29,10 +29,11 @@ criticalRouter.post("/createcriticalpost",async(req,res)=>{
 
 criticalRouter.patch("/update/:id",async(req,res)=>{
     const id = req.params.id
+    const payload  = req.body
 
    try{
     
-    await CriticalModel.findByIdAndUpdate({"_id":id})
+    await CriticalModel.findByIdAndUpdate({"_id":id},payload)
     res.send({"msg":"Updated Successfully"})
   
 

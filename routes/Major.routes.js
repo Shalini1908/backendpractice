@@ -27,6 +27,40 @@ majorRouter.post("/createmajorpost",async(req,res)=>{
 });
 
 
+majorRouter.patch("/update/:id",async(req,res)=>{
+    const id = req.params.id
+    const payload  = req.body
+
+   try{
+    
+    await MajorModel.findByIdAndUpdate({"_id":id},payload)
+    res.send({"msg":"Updated Successfully"})
+  
+
+   }catch(err){
+    console.log(err)
+    res.send({"msg":"Something went wrong"})
+   }
+    })
+    
+    
+    majorRouter.delete("/delete/:id",async(req,res)=>{
+        const id = req.params.id
+ 
+       try{
+
+        await MajorModel.findByIdAndDelete({"_id":id})
+        res.send({"msg":"Deleted Successfully"})
+      
+    
+       }catch(err){
+        console.log(err)
+        res.send({"msg":"Something went wrong"})
+       }
+        })
+    
+
+
  module.exports={
     majorRouter
  }

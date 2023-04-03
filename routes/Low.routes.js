@@ -27,6 +27,41 @@ lowRouter.post("/createlowpost",async(req,res)=>{
 });
 
 
+lowRouter.patch("/update/:id",async(req,res)=>{
+    const id = req.params.id
+    const payload  = req.body
+
+   try{
+    
+    await LowModel.findByIdAndUpdate({"_id":id},payload)
+    res.send({"msg":"Updated Successfully"})
+  
+
+   }catch(err){
+    console.log(err)
+    res.send({"msg":"Something went wrong"})
+   }
+    })
+    
+    
+    lowRouter.delete("/delete/:id",async(req,res)=>{
+        const id = req.params.id
+ 
+       try{
+
+        await LowModel.findByIdAndDelete({"_id":id})
+        res.send({"msg":"Deleted Successfully"})
+      
+    
+       }catch(err){
+        console.log(err)
+        res.send({"msg":"Something went wrong"})
+       }
+        })
+    
+
+
+
  module.exports={
 lowRouter
  }

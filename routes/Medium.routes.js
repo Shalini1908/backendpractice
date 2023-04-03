@@ -27,6 +27,39 @@ mediumRouter .post("/createmediumpost",async(req,res)=>{
 });
 
 
+mediumRouter.patch("/update/:id",async(req,res)=>{
+    const id = req.params.id
+    const payload  = req.body
+
+   try{
+    
+    await MediumModel.findByIdAndUpdate({"_id":id},payload)
+    res.send({"msg":"Updated Successfully"})
+  
+
+   }catch(err){
+    console.log(err)
+    res.send({"msg":"Something went wrong"})
+   }
+    })
+    
+    
+    mediumRouter.delete("/delete/:id",async(req,res)=>{
+        const id = req.params.id
+ 
+       try{
+
+        await MediumModel.findByIdAndDelete({"_id":id})
+        res.send({"msg":"Deleted Successfully"})
+      
+    
+       }catch(err){
+        console.log(err)
+        res.send({"msg":"Something went wrong"})
+       }
+        })
+    
+
  module.exports={
     mediumRouter 
  }
