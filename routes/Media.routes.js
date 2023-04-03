@@ -1,13 +1,13 @@
 const express = require("express");
-const {MediumModel} = require("../modal/Medium.modal")
-const mediumRouter  = express.Router()
+const {MediaModel} = require("../modal/Media.modal")
+const mediaRouter  = express.Router()
 
 
 
 
-mediumRouter .get("/",async(req,res)=>{
+mediaRouter .get("/",async(req,res)=>{
     try {
-        const posts=await MediumModel.find();
+        const posts=await MediaModel.find();
         res.send(posts)
     } catch (error) {
         res.send({"msg":"Something went wrong","error":error})
@@ -15,10 +15,10 @@ mediumRouter .get("/",async(req,res)=>{
 });
 
 
-mediumRouter .post("/createmediumpost",async(req,res)=>{
+mediaRouter .post("/createmediapost",async(req,res)=>{
     const payload=req.body;
     try {
-        const post=new MediumModel(payload);
+        const post=new MediaModel(payload);
         await post.save();
         res.send("Medium Post has been created")
     } catch (error) {
@@ -27,13 +27,13 @@ mediumRouter .post("/createmediumpost",async(req,res)=>{
 });
 
 
-mediumRouter.patch("/update/:id",async(req,res)=>{
+mediaRouter.patch("/update/:id",async(req,res)=>{
     const id = req.params.id
     const payload  = req.body
 
    try{
     
-    await MediumModel.findByIdAndUpdate({"_id":id},payload)
+    await MediaModel.findByIdAndUpdate({"_id":id},payload)
     res.send({"msg":"Updated Successfully"})
   
 
@@ -44,12 +44,12 @@ mediumRouter.patch("/update/:id",async(req,res)=>{
     })
     
     
-    mediumRouter.delete("/delete/:id",async(req,res)=>{
+    mediaRouter.delete("/delete/:id",async(req,res)=>{
         const id = req.params.id
  
        try{
 
-        await MediumModel.findByIdAndDelete({"_id":id})
+        await MediaModel.findByIdAndDelete({"_id":id})
         res.send({"msg":"Deleted Successfully"})
       
     
@@ -61,5 +61,5 @@ mediumRouter.patch("/update/:id",async(req,res)=>{
     
 
  module.exports={
-    mediumRouter 
+    mediaRouter 
  }
