@@ -7,9 +7,12 @@ const {criticalRouter} = require("./routes/Critical.routes")
 const {lowRouter} = require("./routes/Low.routes")
 const {majorRouter} = require("./routes/Major.routes")
 const {mediumRouter} = require("./routes/Medium.routes")
+const cors = require("cors")
+
 
 const app = express()
 app.use(express.json())
+app.use(cors());
 
 
 app.get("/",(req,res)=>{
@@ -17,12 +20,6 @@ app.get("/",(req,res)=>{
 
 })
 
-
-// app.post("/addData",(req,res)=>{
-//     console.log(req.body)
-//     res.send("Data has been added")
-    
-//     })
 
 app.use("/users",userRouter)
 app.use(authenticate) 
@@ -45,3 +42,4 @@ console.log(err)
 console.log("Server is running")
 
 })
+
