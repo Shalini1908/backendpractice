@@ -25,7 +25,7 @@ app.use("/users",userRouter)
 app.use(authenticate) 
 app.use("/low",lowRouter)  
 app.use("/major",majorRouter)  
-app.use("/media",mediumRouter)  
+app.use("/media",mediaRouter)  
 app.use("/critical",criticalRouter)     
 
 app.listen(process.env.port,async()=>{
